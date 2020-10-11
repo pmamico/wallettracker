@@ -1,0 +1,71 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="wallethistoryApp.wallet.home.title">Wallets</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-wallet-my-suffix" [routerLink]="['/wallet-my-suffix/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="wallethistoryApp.wallet.home.createLabel">
+            Create a new Wallet
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="wallets?.length === 0">
+        <span jhiTranslate="wallethistoryApp.wallet.home.notFound">No wallets found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="wallets && wallets.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="currencyId"><span jhiTranslate="wallethistoryApp.wallet.currencyId">Currency Id</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="currentValue"><span jhiTranslate="wallethistoryApp.wallet.currentValue">Current Value</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="wallethistoryApp.wallet.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="walletHistoryId"><span jhiTranslate="wallethistoryApp.wallet.walletHistory">Wallet History</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let wallet of wallets ;trackBy: trackId">
+                    <td><a [routerLink]="['/wallet-my-suffix', wallet.id, 'view']">{{ wallet.id }}</a></td>
+                    <td>{{ wallet.currencyId }}</td>
+                    <td>{{ wallet.currentValue }}</td>
+                    <td>{{ wallet.name }}</td>
+                    <td>
+                        <div *ngIf="wallet.walletHistoryId">
+                            <a [routerLink]="['/wallet-history-my-suffix', wallet.walletHistoryId , 'view']" >{{ wallet.walletHistoryId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/wallet-my-suffix', wallet.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/wallet-my-suffix', wallet.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(wallet)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

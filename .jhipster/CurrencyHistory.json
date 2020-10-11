@@ -1,0 +1,37 @@
+{
+  "name": "CurrencyHistory",
+  "fields": [
+    {
+      "fieldName": "timestamp",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "currencyId",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "value",
+      "fieldType": "Float"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "currency",
+      "otherEntityRelationshipName": "currencyHistory",
+      "relationshipName": "currencyId"
+    }
+  ],
+  "changelogDate": "20201011172554",
+  "entityTableName": "currency_history",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["wallethistory"],
+  "angularJSSuffix": "mySuffix"
+}

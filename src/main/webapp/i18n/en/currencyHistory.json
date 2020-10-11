@@ -1,0 +1,25 @@
+{
+  "wallethistoryApp": {
+    "currencyHistory": {
+      "home": {
+        "title": "Currency Histories",
+        "createLabel": "Create a new Currency History",
+        "createOrEditLabel": "Create or edit a Currency History",
+        "notFound": "No Currency Histories found"
+      },
+      "created": "A new Currency History is created with identifier {{ param }}",
+      "updated": "A Currency History is updated with identifier {{ param }}",
+      "deleted": "A Currency History is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Currency History {{ id }}?"
+      },
+      "detail": {
+        "title": "Currency History"
+      },
+      "timestamp": "Timestamp",
+      "currencyId": "Currency Id",
+      "value": "Value",
+      "currencyId": "Currency Id"
+    }
+  }
+}

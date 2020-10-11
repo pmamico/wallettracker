@@ -1,0 +1,75 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="wallethistoryApp.walletHistory.home.title">Wallet Histories</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-wallet-history-my-suffix" [routerLink]="['/wallet-history-my-suffix/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="wallethistoryApp.walletHistory.home.createLabel">
+            Create a new Wallet History
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="walletHistories?.length === 0">
+        <span jhiTranslate="wallethistoryApp.walletHistory.home.notFound">No walletHistories found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="walletHistories && walletHistories.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="walletId"><span jhiTranslate="wallethistoryApp.walletHistory.walletId">Wallet Id</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="timestamp"><span jhiTranslate="wallethistoryApp.walletHistory.timestamp">Timestamp</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="value"><span jhiTranslate="wallethistoryApp.walletHistory.value">Value</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let walletHistory of walletHistories ;trackBy: trackId">
+                    <td><a [routerLink]="['/wallet-history-my-suffix', walletHistory.id, 'view']">{{ walletHistory.id }}</a></td>
+                    <td>{{ walletHistory.walletId }}</td>
+                    <td>{{ walletHistory.timestamp | date:'medium' }}</td>
+                    <td>{{ walletHistory.value }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/wallet-history-my-suffix', walletHistory.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/wallet-history-my-suffix', walletHistory.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(walletHistory)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="walletHistories && walletHistories.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

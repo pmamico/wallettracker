@@ -1,0 +1,25 @@
+{
+  "wallethistoryApp": {
+    "walletHistory": {
+      "home": {
+        "title": "Wallet Histories",
+        "createLabel": "Create a new Wallet History",
+        "createOrEditLabel": "Create or edit a Wallet History",
+        "notFound": "No Wallet Histories found"
+      },
+      "created": "A new Wallet History is created with identifier {{ param }}",
+      "updated": "A Wallet History is updated with identifier {{ param }}",
+      "deleted": "A Wallet History is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Wallet History {{ id }}?"
+      },
+      "detail": {
+        "title": "Wallet History"
+      },
+      "walletId": "Wallet Id",
+      "timestamp": "Timestamp",
+      "value": "Value",
+      "currencyId": "Currency Id"
+    }
+  }
+}

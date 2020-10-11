@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="walletHistory">
+            <h2><span jhiTranslate="wallethistoryApp.walletHistory.detail.title">Wallet History</span> {{ walletHistory.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="wallethistoryApp.walletHistory.walletId">Wallet Id</span></dt>
+                <dd>
+                    <span>{{ walletHistory.walletId }}</span>
+                </dd>
+                <dt><span jhiTranslate="wallethistoryApp.walletHistory.timestamp">Timestamp</span></dt>
+                <dd>
+                    <span>{{ walletHistory.timestamp }}</span>
+                </dd>
+                <dt><span jhiTranslate="wallethistoryApp.walletHistory.value">Value</span></dt>
+                <dd>
+                    <span>{{ walletHistory.value }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/wallet-history-my-suffix', walletHistory.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

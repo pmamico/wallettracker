@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="currencyHistory">
+            <h2><span jhiTranslate="wallethistoryApp.currencyHistory.detail.title">Currency History</span> {{ currencyHistory.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="wallethistoryApp.currencyHistory.timestamp">Timestamp</span></dt>
+                <dd>
+                    <span>{{ currencyHistory.timestamp }}</span>
+                </dd>
+                <dt><span jhiTranslate="wallethistoryApp.currencyHistory.currencyId">Currency Id</span></dt>
+                <dd>
+                    <span>{{ currencyHistory.currencyId }}</span>
+                </dd>
+                <dt><span jhiTranslate="wallethistoryApp.currencyHistory.value">Value</span></dt>
+                <dd>
+                    <span>{{ currencyHistory.value }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/currency-history-my-suffix', currencyHistory.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

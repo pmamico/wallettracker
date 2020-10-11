@@ -1,0 +1,30 @@
+{
+  "name": "Currency",
+  "fields": [
+    {
+      "fieldName": "iso",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "currencyHistory",
+      "otherEntityRelationshipName": "currencyId",
+      "relationshipName": "currencyHistory",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201011172354",
+  "entityTableName": "currency",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["wallethistory"],
+  "angularJSSuffix": "mySuffix"
+}

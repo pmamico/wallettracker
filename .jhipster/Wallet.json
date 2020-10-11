@@ -1,0 +1,38 @@
+{
+  "name": "Wallet",
+  "fields": [
+    {
+      "fieldName": "currencyId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "currentValue",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "walletHistory",
+      "otherEntityRelationshipName": "currencyId",
+      "relationshipName": "walletHistory",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201011172454",
+  "entityTableName": "wallet",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["wallethistory"],
+  "angularJSSuffix": "mySuffix"
+}

@@ -1,0 +1,55 @@
+
+application {
+  config {
+    baseName wallethistory,
+    applicationType monolith,
+    packageName hu.pmamico.wh,
+    authenticationType jwt,
+    prodDatabaseType postgresql,
+    clientFramework angular
+  }
+  entities *
+}
+
+entity Currency {
+	iso String
+}
+
+entity Wallet {
+	currencyId Integer,
+    currentValue Float,
+    name String
+}
+
+entity CurrencyHistory {
+	timestamp Instant,
+	currencyId Float,
+	value Float
+}
+
+entity WalletHistory {
+	walletId Integer,
+    timestamp Instant,
+    value Float
+}
+
+relationship OneToMany {
+	CurrencyHistory{currencyId} to Currency
+}
+
+relationship OneToMany {
+	WalletHistory{currencyId} to Wallet
+}
+
+// Set pagination options
+paginate Wallet with infinite-scroll
+paginate WalletHistory, CurrencyHistory with pagination
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+angularSuffix * with mySuffix
